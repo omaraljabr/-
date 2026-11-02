@@ -1,0 +1,418 @@
+:root {
+--primary: #7B3FA0;
+--primary-dark: #582A78;
+--primary-light: #F0E6F8;
+--accent: #E8262B;
+--dark: #1E1E2E;
+--light: #F5F5FA;
+--white: #FFFFFF;
+--text-muted: #777789;
+--border: #E5E3EC;
+--success: #16803C;
+--danger: #C62828;
+--shadow: 0 12px 40px rgba(30, 30, 46, 0.08);
+--shadow-hover: 0 18px 45px rgba(123, 63, 160, 0.14);
+}
+
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: Tahoma, Arial, sans-serif;
+background:
+radial-gradient(circle at top right, rgba(123, 63, 160, 0.08), transparent 30%),
+var(--light);
+color: var(--dark);
+direction: rtl;
+min-height: 100vh;
+line-height: 1.8;
+}
+
+/* Header */
+.site-header {
+position: relative;
+background: linear-gradient(135deg, #1E1E2E, #30223E);
+border-bottom: 4px solid var(--primary);
+padding: 30px 20px;
+min-height: 220px;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.site-header::before {
+content: "";
+position: absolute;
+top: -90px;
+left: -60px;
+width: 220px;
+height: 220px;
+border-radius: 50%;
+background: rgba(123, 63, 160, 0.13);
+pointer-events: none;
+}
+
+.brand {
+position: relative;
+width: 100%;
+max-width: 1100px;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Academy Logos Image */
+.logo {
+display: block;
+width: 500px;
+max-width: 100%;
+height: auto;
+object-fit: contain;
+border-radius: 10px;
+transition: transform 0.25s ease;
+}
+
+.logo:hover {
+transform: scale(1.02);
+}
+
+/* Main */
+.page-container {
+width: min(100% - 32px, 650px);
+margin: 45px auto;
+animation: fadeIn 0.5s ease;
+}
+
+.welcome-section {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.welcome-badge {
+display: inline-block;
+padding: 6px 18px;
+background: var(--primary-light);
+color: var(--primary-dark);
+border: 1px solid rgba(123, 63, 160, 0.12);
+border-radius: 30px;
+font-size: 13px;
+font-weight: bold;
+margin-bottom: 15px;
+}
+
+.welcome-section h2 {
+font-size: clamp(24px, 4vw, 32px);
+margin-bottom: 10px;
+line-height: 1.6;
+font-weight: 800;
+}
+
+.welcome-section h2 span {
+color: var(--primary);
+}
+
+.welcome-section p {
+color: var(--text-muted);
+font-size: 15px;
+max-width: 500px;
+margin: auto;
+}
+
+/* Student Card */
+.student-card {
+position: relative;
+background: var(--white);
+border: 1px solid #EEECF3;
+border-radius: 22px;
+padding: 34px;
+box-shadow: var(--shadow);
+transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.student-card:hover {
+box-shadow: var(--shadow-hover);
+}
+
+.card-heading {
+display: flex;
+align-items: center;
+gap: 15px;
+margin-bottom: 28px;
+padding-bottom: 22px;
+border-bottom: 1px solid var(--border);
+}
+
+.heading-icon {
+width: 56px;
+height: 56px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(135deg, #F0E6F8, #E4D2F1);
+color: var(--primary);
+font-size: 28px;
+border-radius: 16px;
+}
+
+.card-heading h3 {
+font-size: 20px;
+font-weight: 800;
+}
+
+.card-heading p {
+color: var(--text-muted);
+font-size: 13px;
+margin-top: 2px;
+}
+
+/* Form */
+.form-group {
+margin-bottom: 22px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 9px;
+font-weight: bold;
+font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+display: block;
+width: 100%;
+min-height: 52px;
+padding: 13px 15px;
+border: 1px solid var(--border);
+border-radius: 11px;
+background: #FCFBFE;
+color: var(--dark);
+font-family: inherit;
+font-size: 14px;
+transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+border-color: #C7AED9;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+outline: none;
+background: var(--white);
+border-color: var(--primary);
+box-shadow: 0 0 0 4px rgba(123, 63, 160, 0.11);
+}
+
+.form-group input::placeholder {
+color: #A1A0AC;
+}
+
+.field-hint {
+display: block;
+margin-top: 7px;
+color: var(--text-muted);
+font-size: 12px;
+}
+
+/* Continue Button */
+#continue-button {
+width: 100%;
+min-height: 54px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+border: none;
+border-radius: 11px;
+background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+color: var(--white);
+font-family: inherit;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0 7px 18px rgba(123, 63, 160, 0.2);
+transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+#continue-button:hover {
+background: linear-gradient(135deg, var(--primary-dark), #43205D);
+transform: translateY(-2px);
+box-shadow: 0 10px 24px rgba(123, 63, 160, 0.25);
+}
+
+#continue-button:active {
+transform: translateY(0);
+}
+
+#continue-button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+/* Messages */
+.form-message {
+display: none;
+margin-bottom: 18px;
+padding: 12px 15px;
+border-radius: 10px;
+font-size: 13px;
+}
+
+.form-message.error {
+display: block;
+color: var(--danger);
+background: #FFF0F0;
+border: 1px solid #F5D1D1;
+}
+
+.form-message.success {
+display: block;
+color: var(--success);
+background: #EDF9F0;
+border: 1px solid #CDEBD5;
+}
+
+/* Footer */
+.site-footer {
+padding: 28px 15px 18px;
+text-align: center;
+color: var(--text-muted);
+font-size: 12px;
+}
+
+.site-footer p {
+margin: 3px 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(10px);
+}
+
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+.site-header {
+padding: 25px 20px;
+min-height: 180px;
+}
+
+
+.logo {
+    width: 400px;
+}
+
+.page-container {
+    margin: 35px auto;
+}
+
+.student-card {
+    padding: 28px;
+}
+
+
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+.site-header {
+padding: 20px 12px;
+min-height: 140px;
+}
+
+
+.logo {
+    width: 100%;
+}
+
+.page-container {
+    width: calc(100% - 24px);
+    margin: 28px auto;
+}
+
+.welcome-section {
+    margin-bottom: 22px;
+}
+
+.welcome-section h2 {
+    font-size: 23px;
+}
+
+.welcome-section p {
+    font-size: 13px;
+}
+
+.student-card {
+    padding: 22px 17px;
+    border-radius: 17px;
+}
+
+.card-heading {
+    gap: 11px;
+    margin-bottom: 23px;
+    padding-bottom: 18px;
+}
+
+.heading-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    border-radius: 13px;
+}
+
+.card-heading h3 {
+    font-size: 17px;
+}
+
+.card-heading p {
+    font-size: 11px;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+#continue-button {
+    min-height: 52px;
+    font-size: 15px;
+}
+
+
+}
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms !important;
+transition-duration: 0.01ms !important;
+scroll-behavior: auto !important;
+}
+}

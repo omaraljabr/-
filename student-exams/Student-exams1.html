@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>منصة استكشاف المواهب الرقمية | الاختبارات المتاحة</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f3f6fb;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #142b4a, #243f65);
+            color: white;
+            padding: 25px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .brand {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand img {
+            width: 380px;
+            max-width: 90%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .brand h1 {
+            font-size: 25px;
+        }
+
+        .brand p {
+            color: #cbd5e1;
+            font-size: 15px;
+        }
+
+        .student-info {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-size: 15px;
+        }
+
+        /* Main */
+        main {
+            width: min(1100px, 92%);
+            margin: 45px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome span {
+            display: inline-block;
+            color: #2563eb;
+            background: #dbeafe;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .welcome h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: #142b4a;
+        }
+
+        .welcome p {
+            color: #64748b;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .section-title {
+            margin: 30px 0 22px;
+            font-size: 23px;
+            color: #142b4a;
+        }
+
+        /* Exams Grid */
+   .exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+    justify-content: start;
+    gap: 20px;
+    direction: rtl;
+}
+
+.exam-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 18px;
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.06);
+    transition: 0.3s ease;
+}
+
+.exam-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.10);
+}
+
+.exam-icon {
+    width: 45px;
+    height: 45px;
+    background: #eaf1ff;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.exam-card h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+    color: #142b4a;
+}
+
+.exam-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.exam-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+
+.start-button {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 11px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+        /* Exam Icon */
+        .exam-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #eaf1ff, #ede9fe);
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 32px;
+            margin-bottom: 22px;
+        }
+
+        /* Exam Title */
+        .exam-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #142b4a;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        /* Exam Description */
+        .exam-card p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        /* Exam Information */
+        .exam-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .exam-meta span {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 9px 13px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .exam-meta span:last-child {
+            background: #dcfce7;
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        /* Start Button */
+        .start-button {
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .start-button:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: scale(1.02);
+        }
+
+        .start-button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* Empty State */
+        .empty-state {
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 18px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #64748b;
+            line-height: 2;
+        }
+
+        .empty-state h3 {
+            color: #142b4a;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #2563eb;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+            padding: 25px 10px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .brand img {
+                width: 300px;
+                height: 120px;
+            }
+
+            .brand h1 {
+                font-size: 21px;
+            }
+
+            .welcome h2 {
+                font-size: 25px;
+            }
+
+            .welcome p {
+                font-size: 14px;
+            }
+
+            main {
+                margin-top: 30px;
+            }
+
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-card {
+                padding: 23px;
+            }
+
+            .exam-card h3 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="../image/منصة استكشاف المواهب الرقمية.png"
+            alt="منصة استكشاف المواهب الرقمية"
+        >
+
+        <h1>منصة استكشاف المواهب الرقمية</h1>
+
+        <p>باستخدام الذكاء الاصطناعي</p>
+
+    </div>
+
+    <div class="student-info" id="student-info">
+        جارٍ تحميل بيانات الطالب...
+    </div>
+
+</header>
+
+<main>
+
+    <section class="welcome">
+
+        <span>المرحلة الثانية</span>
+
+        <h2>الاختبارات المتاحة</h2>
+
+        <p>
+            اختر الاختبار الذي تريد أداءه، ثم اضغط على «ابدأ الاختبار».
+            اقرأ الأسئلة بعناية قبل إرسال إجاباتك.
+        </p>
+
+    </section>
+
+    <h3 class="section-title">قائمة الاختبارات</h3>
+
+    <section id="exam-list" class="exam-grid">
+        <div class="empty-state">جارٍ تحميل الاختبارات...</div>
+    </section>
+
+    <a class="back-link" href="../index.html">
+        ← العودة إلى صفحة التسجيل
+    </a>
+
+</main>
+
+<footer>
+    <p>منصة استكشاف المواهب الرقمية © 2026 — جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const studentInfo = document.getElementById("student-info");
+    const examList = document.getElementById("exam-list");
+
+    // Read student information
+    let student;
+
+    try {
+        student = JSON.parse(
+            sessionStorage.getItem("currentStudent") || "null"
+        );
+    } catch (error) {
+        student = null;
+    }
+
+    if (!student || !student.fullName) {
+
+        studentInfo.textContent = "لم يتم تسجيل بيانات الطالب";
+
+        examList.innerHTML = `
+            <div class="empty-state">
+                <h3>يرجى تسجيل الدخول أولاً</h3>
+                <p>أدخل بياناتك قبل الانتقال إلى قائمة الاختبارات.</p>
+                <a class="start-button" href="../index.html">
+                    الانتقال إلى التسجيل
+                </a>
+            </div>
+        `;
+
+        return;
+    }
+
+    studentInfo.textContent = "مرحباً، " + student.fullName;
+
+    // Read exams from localStorage
+    let exams;
+
+    try {
+        exams = JSON.parse(localStorage.getItem("exams") || "[]");
+    } catch (error) {
+        exams = [];
+    }
+
+    if (!Array.isArray(exams)) {
+        exams = [];
+    }
+
+    // Filter available exams
+    const availableExams = exams
+        .map((exam, index) => ({ exam, index }))
+        .filter(({ exam }) => {
+
+            if (!exam || typeof exam !== "object") {
+                return false;
+            }
+
+            const hidden =
+                exam.hidden === true ||
+                exam.isHidden === true;
+
+            const questions = Array.isArray(exam.questions)
+                ? exam.questions
+                : [];
+
+            return !hidden && questions.length > 0;
+        });
+
+    if (availableExams.length === 0) {
+
+        examList.innerHTML = `
+            <div class="empty-state">
+                <h3>لا توجد اختبارات متاحة حالياً</h3>
+                <p>
+                    لم نعثر على اختبارات تحتوي على أسئلة.
+                    تأكد من إنشاء الاختبار وإضافة أسئلته من لوحة الإدارة.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    examList.innerHTML = "";
+
+    // Display exam cards
+    availableExams.forEach(({ exam, index }) => {
+
+        const title =
+            exam.title ||
+            exam.name ||
+            exam.examName ||
+            ("الاختبار " + (index + 1));
+
+        const description =
+            exam.description ||
+            "اختبر معلوماتك وأجب عن جميع الأسئلة.";
+
+        const questions = Array.isArray(exam.questions)
+            ? exam.questions
+            : [];
+
+        const card = document.createElement("article");
+        card.className = "exam-card";
+
+        const icon = document.createElement("div");
+        icon.className = "exam-icon";
+        icon.textContent = "📝";
+
+        const heading = document.createElement("h3");
+        heading.textContent = title;
+
+        const desc = document.createElement("p");
+        desc.textContent = description;
+
+        const meta = document.createElement("div");
+        meta.className = "exam-meta";
+
+        const count = document.createElement("span");
+        count.textContent = "عدد الأسئلة: " + questions.length;
+
+        const status = document.createElement("span");
+        status.textContent = "متاح";
+
+        meta.append(count, status);
+
+        const button = document.createElement("button");
+        button.className = "start-button";
+        button.type = "button";
+        button.textContent = "ابدأ الاختبار ←";
+
+        button.addEventListener("click", () => {
+
+            // Save selected exam index
+            sessionStorage.setItem(
+                "currentExamIndex",
+                String(index)
+            );
+
+            // Open student exam page
+            window.location.href = "student-exam.html";
+        });
+
+        card.append(icon, heading, desc, meta, button);
+
+        examList.appendChild(card);
+
+    });
+
+});
+</script>
+
+</body>
+</html>

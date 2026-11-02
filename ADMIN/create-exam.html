@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إنشاء امتحان | ExamPro</title>
+
+    <link rel="stylesheet" href="Stayle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="top-header">
+
+        <div class="brand">
+
+            <img src="../image/philips.jpeg" alt="شعار ExamPro" class="logo">
+
+            <div class="brand-info">
+                <h1>ExamPro</h1>
+                <p>نظام إدارة الامتحانات الإلكترونية</p>
+            </div>
+
+        </div>
+
+        <div class="admin-profile">
+
+            <div class="profile-icon">A</div>
+
+            <div>
+                <h3>مدير النظام</h3>
+                <span>Administrator</span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Navigation -->
+    <nav class="admin-nav">
+
+        <a href="admin.html" class="nav-link">
+            <span>📋</span>
+            إدارة الامتحانات
+        </a>
+
+        <a href="#" class="nav-link" data-export-report>
+    <span>📊</span>
+    التقارير
+</a>
+
+        <a href="login.html" class="nav-link logout">
+            <span>🚪</span>
+            تسجيل الخروج
+        </a>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="dashboard">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+
+            <a href="admin.html">لوحة الإدارة</a>
+
+            <span>/</span>
+
+            <span>إنشاء امتحان</span>
+
+        </div>
+
+
+        <!-- Page Heading -->
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="section-label">إعداد الامتحانات</span>
+
+                <h2>إنشاء امتحان جديد</h2>
+
+                <p>
+                    أدخل بيانات الامتحان وحدد إعداداته قبل الانتقال إلى إضافة الأسئلة.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Form Layout -->
+        <div class="exam-layout">
+
+            <!-- Sidebar Information -->
+            <aside class="exam-sidebar">
+
+                <div class="sidebar-icon">📝</div>
+
+                <h3>إعداد امتحانك</h3>
+
+                <p>
+                    أنشئ امتحانًا منظمًا وحدد خياراته بما يتناسب مع أهدافك التعليمية.
+                </p>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-tip">
+
+                    <span>💡</span>
+
+                    <div>
+                        <strong>نصيحة</strong>
+
+                        <p>
+                            اختر اسمًا واضحًا للامتحان، واكتب وصفًا يوضح محتواه للطلاب.
+                        </p>
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- Form Card -->
+            <section class="exam-form-card">
+
+                <div class="form-card-header">
+
+                    <div>
+                        <h3>معلومات الامتحان</h3>
+                        <p>جميع الإعدادات الأساسية في مكان واحد.</p>
+                    </div>
+
+                    <span class="form-step">الخطوة 1</span>
+
+                </div>
+
+
+                <form id="create-exam-form">
+
+                    <!-- Basic Information -->
+                    <div class="form-section-title">
+
+                        <span class="form-section-icon">📌</span>
+
+                        <div>
+                            <h4>البيانات الأساسية</h4>
+                            <p>أدخل اسم الامتحان ووصفه.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examName">
+                            اسم الامتحان
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="examName"
+                            placeholder="مثال: امتحان القيادة الاستراتيجية"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examDesc">وصف الامتحان</label>
+
+                        <textarea
+                            id="examDesc"
+                            rows="4"
+                            placeholder="اكتب وصفًا مختصرًا يوضح محتوى الامتحان..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Exam Settings -->
+                    <div class="form-section-title">
+
+                        <span class="form-section-icon">⚙️</span>
+
+                        <div>
+                            <h4>إعدادات الامتحان</h4>
+                            <p>حدد عدد الأسئلة وخيارات عرض النتائج.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="maxQuestions">
+                                الحد الأقصى للأسئلة
+                            </label>
+
+                            <select id="maxQuestions">
+
+                                <option value="5">5 أسئلة</option>
+                                <option value="10">10 أسئلة</option>
+                                <option value="15">15 سؤالًا</option>
+                                <option value="20">20 سؤالًا</option>
+                                <option value="30">30 سؤالًا</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="showResult">
+                                إظهار النتيجة للطالب
+                            </label>
+
+                            <select id="showResult">
+
+                                <option value="no">لا، إخفاء النتيجة</option>
+                                <option value="yes">نعم، إظهار النتيجة</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Visibility -->
+                    <div class="form-section-title">
+
+                        <span class="form-section-icon">🔒</span>
+
+                        <div>
+                            <h4>الظهور واللغة</h4>
+                            <p>تحكم في ظهور الامتحان ولغته.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-box">
+
+                        <label class="setting-option" for="hideExam">
+
+                            <span class="setting-icon">👁️</span>
+
+                            <span class="setting-text">
+                                <strong>إخفاء الامتحان</strong>
+
+                                <small>
+                                    تفعيل هذا الخيار يخفي الامتحان حسب منطق النظام.
+                                </small>
+                            </span>
+
+                            <input type="checkbox" id="hideExam">
+
+                            <span class="custom-check"></span>
+
+                        </label>
+
+
+                        <div class="settings-divider"></div>
+
+
+                        <label class="setting-option" for="arabicExam">
+
+                            <span class="setting-icon">🌐</span>
+
+                            <span class="setting-text">
+                                <strong>امتحان باللغة العربية</strong>
+
+                                <small>
+                                    حدد هذا الخيار إذا كان الامتحان باللغة العربية.
+                                </small>
+                            </span>
+
+                            <input type="checkbox" id="arabicExam">
+
+                            <span class="custom-check"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="form-actions">
+
+                        <a href="admin.html" class="btn-cancel">
+                            إلغاء
+                        </a>
+
+                        <button type="submit" class="btn-primary btn-save">
+
+                            <span>✓</span>
+
+                            حفظ الامتحان
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                © 2026 ExamPro — نظام إدارة الامتحانات الإلكترونية
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="create-exam.js"></script>
+<script src="export-report.js"></script>
+</body>
+
+</html>
+

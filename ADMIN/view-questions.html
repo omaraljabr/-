@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إدارة الأسئلة | ExamPro</title>
+
+    <link rel="stylesheet" href="Stayle.css">
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <div class="container">
+            <h1>ExamPro</h1>
+            <p>إدارة أسئلة الامتحانات</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="exam-questions-section">
+
+            <div class="questions-page-header">
+                <div>
+                    <h2 id="exam-title">أسئلة الامتحان</h2>
+                    <p id="exam-description">
+                        إدارة الأسئلة والإجابات الخاصة بالامتحان.
+                    </p>
+                </div>
+
+                <a href="admin.html" class="btn-row">
+                    العودة إلى لوحة الإدارة
+                </a>
+            </div>
+
+            <div class="questions-statistics">
+                <div class="question-stat-card">
+                    <span>عدد الأسئلة</span>
+                    <strong id="questions-count">0</strong>
+                </div>
+
+                <div class="question-stat-card">
+                    <span>الحد الأقصى للأسئلة</span>
+                    <strong id="questions-limit">0</strong>
+                </div>
+            </div>
+
+            <div id="questions-container">
+                <div class="empty-state">
+                    <h3>جارٍ تحميل الأسئلة...</h3>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="view-questions.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة استكشاف المواهب الرقمية | حل الاختبار</title>
+    <link rel="stylesheet" href="student-exam.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="brand">
+            <img src="../image/منصة استكشاف المواهب الرقمية.png" alt="ExamPro" class="logo">
+            <div class="brand-text">
+                <h1>منصة استكشاف المواهب الرقمية</h1>
+                <p>منصة الاختبارات الإلكترونية</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="exam-container">
+
+        <section class="exam-header">
+            <span class="exam-badge">المرحلة الثانية</span>
+            <h2 id="exam-title">جارٍ التحميل...</h2>
+            <p id="student-name"></p>
+        </section>
+
+        <section class="exam-card" id="exam-card">
+                       <div class="question-info">
+                <span id="question-number">السؤال 1</span>
+                <span id="timer">⏱ 40</span>
+                <span id="question-count"></span>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <h3 id="question-text"></h3>
+
+            <div class="options-container" id="options-container"></div>
+
+            <p class="question-message" id="question-message"></p>
+
+            <div class="navigation-buttons">
+                <button type="button" class="secondary-button" id="previous-button">السابق</button>
+                <button type="button" class="primary-button" id="next-button">التالي</button>
+                <button type="button" class="submit-button" id="submit-button" hidden>تسليم الاختبار</button>
+            </div>
+        </section>
+
+        <section class="result-card" id="result-card" hidden>
+            <div class="result-icon">✓</div>
+            <h2>تم تسليم الاختبار</h2>
+            <p id="result-student"></p>
+
+            <div class="score-box">
+                <span>نتيجتك</span>
+                <strong id="result-score"></strong>
+                <p id="result-details"></p>
+            </div>
+
+            <p class="result-note">تم حفظ نتيجتك بنجاح.</p>
+            <a href="student-exams.html" class="back-link">← العودة إلى الاختبارات</a>
+        </section>
+
+        <footer class="site-footer">
+            <p>ExamPro © 2026 — جميع الحقوق محفوظة</p>
+        </footer>
+
+    </main>
+
+    <script src="student-exam.js"></script>
+</body>
+</html>

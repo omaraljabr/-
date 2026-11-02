@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة الإدارة | ExamPro</title>
+
+    <link rel="stylesheet" href="Stayle.css">
+</head>
+
+<body>
+
+    <!-- الشريط العلوي -->
+    <header class="top-header">
+
+        <div class="brand">
+            <img src="../image/philips.jpeg" alt="شعار ExamPro" class="logo">
+
+            <div class="brand-info">
+                <h1>ExamPro</h1>
+                <p>نظام إدارة الامتحانات الإلكترونية</p>
+            </div>
+        </div>
+
+        <div class="admin-profile">
+            <div class="profile-icon">A</div>
+
+            <div>
+                <h3>مدير النظام</h3>
+                <span>Administrator</span>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- القائمة الرئيسية -->
+    <nav class="admin-nav">
+
+        <a href="#" class="nav-link active">
+            <span>📋</span>
+            إدارة الامتحانات
+        </a>
+
+        <a href="reports.html" class="nav-link">
+            <span>📊</span>
+            التقارير
+        </a>
+
+        <a href="login.html" class="nav-link logout">
+            <span>🚪</span>
+            تسجيل الخروج
+        </a>
+
+    </nav>
+
+
+    <!-- المحتوى الرئيسي -->
+    <main class="dashboard">
+
+        <!-- عنوان الصفحة -->
+        <section class="welcome-section">
+
+            <div>
+                <span class="section-label">لوحة التحكم</span>
+
+                <h2>إدارة الامتحانات</h2>
+
+                <p>
+                    أنشئ امتحاناتك، وأدر الأسئلة، وتابع حالة كل امتحان بسهولة.
+                </p>
+            </div>
+
+            <button type="button" id="btn-new-exam" class="btn-primary">
+                <span>＋</span>
+                إنشاء امتحان جديد
+            </button>
+
+        </section>
+
+
+        <!-- الإحصائيات -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon purple">📝</div>
+
+                <div>
+                    <p>إجمالي الامتحانات</p>
+                    <h3 id="total-exams">0</h3>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+
+                <div>
+                    <p>الامتحانات النشطة</p>
+                    <h3 id="active-exams">0</h3>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+
+                <div>
+                    <p>الامتحانات غير النشطة</p>
+                    <h3 id="inactive-exams">0</h3>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- قائمة الامتحانات -->
+        <section class="exams-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>جميع الامتحانات</h2>
+                    <p>يمكنك إدارة الامتحانات من خلال البطاقات التالية.</p>
+                </div>
+
+                <span class="exams-badge">قائمة الامتحانات</span>
+
+            </div>
+
+
+            <!-- سيتم عرض الامتحانات هنا بواسطة JavaScript -->
+        <div id="exams-body" class="exams-grid"></div>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">📚</div>
+
+                    <h3>لا توجد امتحانات حتى الآن</h3>
+
+                    <p>ابدأ بإنشاء امتحانك الأول ليظهر هنا.</p>
+
+                    <button type="button" class="btn-secondary"
+                        onclick="document.getElementById('btn-new-exam').click()">
+                        إنشاء أول امتحان
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- تذييل الصفحة -->
+        <footer class="dashboard-footer">
+            <p>© 2026 ExamPro — نظام إدارة الامتحانات الإلكترونية</p>
+        </footer>
+
+    </main>
+
+
+   <script src="admin.js"></script>
+
+
+    <script>
+        document.getElementById("btn-new-exam").addEventListener("click", function () {
+            window.location.href = "create-exam.html";
+        });
+    </script>
+    
+
+<script src="create-exam.js"></script>
+</body>
+</html>

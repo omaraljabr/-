@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقارير | ExamPro</title>
+    <link rel="stylesheet" href="Stayle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 12px 10px; border-bottom: 1px solid #eceef5; text-align: right; white-space: nowrap; }
+        th { background: #eeecff; color: #6254e8; }
+        .report-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-plain { border: none; cursor: pointer; font-family: inherit; }
+        .pass { color: #16a36a; font-weight: bold; }
+        .fail { color: #dc4545; font-weight: bold; }
+        .details-box { margin-top: 25px; padding: 20px; background: #fafaff; border: 1px solid #eceef5; border-radius: 16px; }
+        .details-box h3 { margin-bottom: 10px; color: #6254e8; }
+        .details-box ul { margin: 10px 25px 0 0; line-height: 2; }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="container">
+            <h1>ExamPro</h1>
+            <p>تقارير نتائج الطلاب</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="exam-questions-section">
+
+            <div class="questions-page-header">
+                <div>
+                    <h2>نتائج الاختبارات</h2>
+                    <p>جميع المحاولات التي سلّمها الطلاب.</p>
+                </div>
+
+                <div class="report-actions">
+                    <a href="admin.html" class="btn-row">العودة إلى لوحة الإدارة</a>
+                </div>
+            </div>
+
+            <div class="questions-statistics">
+                <div class="question-stat-card">
+                    <span>عدد المحاولات</span>
+                    <strong id="total-attempts">0</strong>
+                </div>
+                <div class="question-stat-card">
+                    <span>متوسط الدرجات</span>
+                    <strong id="average-score">0%</strong>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>الإيميل</th>
+                            <th>الجوال</th>
+                            <th>الاختبار</th>
+                            <th>صحيحة</th>
+                            <th>خاطئة</th>
+                            <th>النسبة</th>
+                            <th>الحالة</th>
+                            <th>وقت التسليم</th>
+                            <th>تفاصيل</th>
+                            <th>Excel</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body"></tbody>
+                </table>
+            </div>
+
+            <div id="details-box" class="details-box" hidden></div>
+
+        </section>
+    </main>
+
+    <script src="export-report.js"></script>
+
+    <script>
+        "use strict";
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const PASS_MARK = 50;
+            const body = document.getElementById("results-body");
+            const detailsBox = document.getElementById("details-box");
+
+            let results = [];
+            try {
+                results = JSON.parse(localStorage.getItem("examResults") || "[]");
+            } catch (error) {
+                results = [];
+            }
+            if (!Array.isArray(results)) results = [];
+
+            function statusOf(r) {
+                return (Number(r.percentage) || 0) >= PASS_MARK ? "ناجح" : "راسب";
+            }
+
+            function dateOf(r) {
+                return r.submittedAt ? new Date(r.submittedAt).toLocaleString("ar-EG") : "";
+            }
+
+            function answersOf(r) {
+                return Array.isArray(r.answers) ? r.answers : [];
+            }
+
+            function isCorrect(a) {
+                const c = String(a.correctAnswer || "").trim().toLowerCase();
+                const s = String(a.selectedAnswer || "").trim().toLowerCase();
+                return c !== "" && c === s;
+            }
+
+            function showDetails(r) {
+                detailsBox.replaceChildren();
+
+                const title = document.createElement("h3");
+                title.textContent = "تفاصيل: " + (r.studentName || "") + " — " + (r.examName || "");
+                detailsBox.appendChild(title);
+
+                const summary = document.createElement("p");
+                summary.textContent = "الصحيحة: " + r.correctAnswers + " | الخاطئة: " + r.wrongAnswers +
+                    " | النسبة: " + r.percentage + "%";
+                detailsBox.appendChild(summary);
+
+                const wrong = answersOf(r).filter((a) => !isCorrect(a));
+                const head = document.createElement("p");
+                head.style.marginTop = "12px";
+                head.style.fontWeight = "bold";
+                head.textContent = wrong.length ? "الأسئلة التي أخطأ فيها:" : "لم يخطئ في أي سؤال.";
+                detailsBox.appendChild(head);
+
+                if (wrong.length) {
+                    const list = document.createElement("ul");
+                    wrong.forEach((a) => {
+                        const li = document.createElement("li");
+                        li.textContent = a.question;
+                        list.appendChild(li);
+                    });
+                    detailsBox.appendChild(list);
+                }
+
+                detailsBox.hidden = false;
+                detailsBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+
+            document.getElementById("total-attempts").textContent = results.length;
+
+            if (results.length === 0) {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.colSpan = 12;
+                cell.textContent = "لا توجد نتائج حتى الآن.";
+                row.appendChild(cell);
+                body.appendChild(row);
+                return;
+            }
+
+            const sum = results.reduce((t, r) => t + (Number(r.percentage) || 0), 0);
+            document.getElementById("average-score").textContent =
+                Math.round(sum / results.length) + "%";
+
+            results.forEach((r, i) => {
+                const row = document.createElement("tr");
+
+                const values = [
+                    i + 1,
+                    r.studentName || "",
+                    r.email || "",
+                    r.phone || "",
+                    r.examName || "",
+                    r.correctAnswers,
+                    r.wrongAnswers,
+                    (r.percentage ?? "") + "%"
+                ];
+
+                values.forEach((value) => {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+
+                const statusCell = document.createElement("td");
+                const status = statusOf(r);
+                statusCell.textContent = status;
+                statusCell.className = status === "ناجح" ? "pass" : "fail";
+                row.appendChild(statusCell);
+
+                const dateCell = document.createElement("td");
+                dateCell.textContent = dateOf(r);
+                row.appendChild(dateCell);
+
+                const actionCell = document.createElement("td");
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "btn-row btn-plain";
+                button.textContent = "تفاصيل";
+                button.addEventListener("click", () => showDetails(r));
+                actionCell.appendChild(button);
+                row.appendChild(actionCell);
+
+                const excelCell = document.createElement("td");
+                const excelButton = document.createElement("button");
+                excelButton.type = "button";
+                excelButton.className = "btn-row btn-plain";
+                excelButton.textContent = "تحميل Excel";
+                excelButton.addEventListener("click", () => exportExamReport(i));
+                excelCell.appendChild(excelButton);
+                row.appendChild(excelCell);
+
+                body.appendChild(row);
+            });
+        });
+    </script>
+
+</body>
+</html>
