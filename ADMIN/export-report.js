@@ -3,7 +3,7 @@
 // غيّرها إلى true لو تريد ظهور الإجابة الصحيحة في الإكسل
 const SHOW_CORRECT_ANSWER = false;
 const PASS_MARK = 50;
-const ANALYZE_URL = "http://localhost:3000/analyze";
+const ANALYZE_URL = "https://exampro-ai-server.onrender.com/analyze";
 
 const COLORS = {
     primary: "FF6254E8",
