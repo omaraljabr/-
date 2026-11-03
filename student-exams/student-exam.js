@@ -33,6 +33,43 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentQuestionIndex = 0;
 
     const answers = {};
+        // ===== مؤقت السؤال: 40 ثانية =====
+    const QUESTION_TIME = 40;
+    let timeLeft = QUESTION_TIME;
+    let timerId = null;
+
+    const timerBox = document.createElement("div");
+    timerBox.style.cssText =
+        "text-align:center;font-size:22px;font-weight:bold;margin:10px 0;";
+    questionText.parentNode.insertBefore(timerBox, questionText);
+
+    function updateTimerBox() {
+        timerBox.textContent = "⏱ " + timeLeft + " ثانية";
+        timerBox.style.color = timeLeft <= 10 ? "#dc2626" : "#2563eb";
+    }
+
+    function goNextAuto() {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            renderQuestion();
+        } else {
+            finishExam();
+        }
+    }
+
+    function startTimer() {
+        clearInterval(timerId);
+        timeLeft = QUESTION_TIME;
+        updateTimerBox();
+        timerId = setInterval(() => {
+            timeLeft--;
+            updateTimerBox();
+            if (timeLeft <= 0) {
+                clearInterval(timerId);
+                goNextAuto();
+            }
+        }, 1000);
+    }
 
     function stopWithMessage(message) {
 
